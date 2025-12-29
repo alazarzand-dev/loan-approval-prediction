@@ -78,6 +78,7 @@ Two models were trained and evaluated:
 ## 📁 Project Structure
 
 lloan-approval-ml-project/
+
 ├── notebook/
 
 │   ├── loan_approval_training.ipynb    
