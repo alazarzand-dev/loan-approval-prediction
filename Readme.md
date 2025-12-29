@@ -79,6 +79,7 @@ Two models were trained and evaluated:
 
 lloan-approval-ml-project/
 ├── notebook/
+
 │   ├── loan_approval_training.ipynb    
 │   └── loan_approval_dataset.csv       
 ├── backend/
