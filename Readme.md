@@ -82,12 +82,14 @@ lloan-approval-ml-project/
 │   ├── loan_approval_training.ipynb    
 │   └── loan_approval_dataset.csv       
 ├── backend/
+
 │   ├── main.py                         
 │   ├── logistic_regression_pipeline.pkl
 │   ├── decision_tree_pipeline.pkl      
 │   ├── requirements.txt                
 │   └── README.md                       
 ├── frontend/
+
 │   ├── index.html                      
 │   ├── style.css                       
 │   └── script.js                       
