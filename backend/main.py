@@ -45,7 +45,7 @@ class LoanApplication(BaseModel):
     cb_person_cred_hist_length: float
     credit_score: int
     previous_loan_defaults_on_file: str
-
+    model_type: str
 
 # -------------------------------------------------
 # Health check endpoint
@@ -61,18 +61,25 @@ def root():
 @app.post("/predict")
 def predict_loan_status(application: LoanApplication):
     """
-    Predict loan approval using trained ML models.
+    Predict loan approval using the selected ML model.
     """
 
     # Convert input data to pandas DataFrame
-    input_data = pd.DataFrame([application.dict()])
+    input_data = pd.DataFrame([application.dict(exclude={"model_type"})])
 
-    # Make predictions
-    lr_prediction = logistic_model.predict(input_data)[0]
-    dt_prediction = decision_tree_model.predict(input_data)[0]
+    # Select model based on user choice
+    if application.model_type == "decision_tree":
+        model = decision_tree_model
+        model_name = "Decision Tree"
+    else:
+        model = logistic_model
+        model_name = "Logistic Regression"
 
-    # Return results
+    # Make prediction
+    prediction = model.predict(input_data)[0]
+
     return {
-        "logistic_regression_prediction": int(lr_prediction),
-        "decision_tree_prediction": int(dt_prediction)
+        "loan_approved": int(prediction),
+        "model_used": model_name
     }
+
