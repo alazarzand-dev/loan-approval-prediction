@@ -12,7 +12,7 @@ It covers the full ML lifecycle: **data preprocessing, model training, evaluatio
 
 - **Backend API (Render):**  
   👉 https://loan-approval-prediction-xktt.onrender.com
-  👉 Swagger UI: https://loan-approval-prediction-xktt.onrender.com/docs
+
 
 ---
 
