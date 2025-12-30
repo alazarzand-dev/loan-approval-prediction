@@ -38,6 +38,22 @@ h1 {
   opacity: 0.85;
 }
 
+.choose-model {
+  font-size: 18px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.radio-group label {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+
 section {
   margin-bottom: 25px;
 }
@@ -111,12 +127,12 @@ button:hover {
 }
 
 .approved {
-  background: rgba(0, 255, 119, 0.747);
+  background: rgba(0, 255, 64, 0.555);
   color: #fff;
 }
 
 .rejected {
-  background: rgba(255, 0, 0, 0.808);
+  background: rgba(255, 0, 0, 0.712);
   color: #fff;
 }
 
@@ -129,7 +145,7 @@ button:hover {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* 📱 Responsive */
+
 @media (min-width: 768px) {
   form {
     display: grid;

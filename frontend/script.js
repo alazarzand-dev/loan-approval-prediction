@@ -6,6 +6,7 @@ document.getElementById("loan-form").addEventListener("submit", async (e) => {
   resultBox.textContent = "Predicting...";
   resultBox.classList.remove("hidden");
 
+
   const person_age = document.getElementById("person_age");
   const person_gender = document.getElementById("person_gender");
   const person_education = document.getElementById("person_education");
@@ -20,6 +21,12 @@ document.getElementById("loan-form").addEventListener("submit", async (e) => {
   const credit_score = document.getElementById("credit_score");
   const previous_loan_defaults_on_file = document.getElementById("previous_loan_defaults_on_file");
 
+
+  const model_type = document.querySelector(
+    'input[name="model_type"]:checked'
+  ).value;
+
+
   const data = {
     person_age: Number(person_age.value),
     person_gender: person_gender.value,
@@ -33,33 +40,38 @@ document.getElementById("loan-form").addEventListener("submit", async (e) => {
     loan_percent_income: Number(loan_percent_income.value),
     cb_person_cred_hist_length: Number(cb_person_cred_hist_length.value),
     credit_score: Number(credit_score.value),
-    previous_loan_defaults_on_file: previous_loan_defaults_on_file.value
+    previous_loan_defaults_on_file: previous_loan_defaults_on_file.value,
+    model_type: model_type
   };
 
   try {
-    const response = await fetch("https://loan-approval-prediction-xktt.onrender.com/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+    const response = await fetch(
+      "https://loan-approval-prediction-xktt.onrender.com/predict",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }
+    );
 
     const result = await response.json();
 
-    if (result.logistic_regression_prediction === 1) {
-      resultBox.textContent = "✅ Loan Approved";
+    if (result.loan_approved === 1) {
+      resultBox.textContent = `✅ Loan Approved (${result.model_used})`;
       resultBox.classList.add("approved");
     } else {
-      resultBox.textContent = "❌ Loan Rejected";
+      resultBox.textContent = `❌ Loan Rejected (${result.model_used})`;
       resultBox.classList.add("rejected");
     }
 
     resultBox.scrollIntoView({ behavior: "smooth" });
 
-  } catch {
+  } catch (error) {
     resultBox.textContent = "⚠️ Backend not reachable";
     resultBox.classList.add("rejected");
   }
 });
+
 
 document.getElementById("resetBtn").addEventListener("click", () => {
   const resultBox = document.getElementById("result");
