@@ -17,7 +17,9 @@
       <p class="subtitle">Machine Learning–powered decision support</p>
 
       <div class="form-group">
-        <label><h2 class="choose-model">Choose Model</h2></label>
+        <label>
+          <h2 class="choose-model">Choose Model</h2>
+        </label>
         <div class="radio-group">
           <label>
             <input type="radio" name="model_type" value="logistic" checked>
@@ -146,6 +148,13 @@
         </div>
 
       </form>
+
+      <div id="coldStartWarning" class="warning-box hidden">
+        ⚠️ Note: The backend is hosted on Render free tier.
+        The first request after inactivity may take longer due to cold start.
+        Subsequent predictions are fast.
+
+      </div>
 
       <div id="result" class="result hidden"></div>
 
